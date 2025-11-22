@@ -1,5 +1,7 @@
 import 'package:animated_button/custom_painter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 enum SaveStatus { idle, loading, success }
 
@@ -28,7 +30,7 @@ class _AnimatedSaveButtonState extends State<AnimatedSaveButton>
     );
 
     // widht animation
-    _widhtAnimation = Tween<double>(begin: 80.0, end: 120.0).animate(
+    _widhtAnimation = Tween<double>(begin: 160.0, end: 200.0).animate(
       CurvedAnimation(
         parent: _controller,
         curve: const Interval(0.0, 0.7, curve: Curves.easeInOutBack),
@@ -81,13 +83,19 @@ class _AnimatedSaveButtonState extends State<AnimatedSaveButton>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Animated Button"), centerTitle: true),
+      appBar: AppBar(
+        title: Text("Animated Button", style: GoogleFonts.questrial()),
+        centerTitle: true,
+      ),
       body: Center(
         child: AnimatedBuilder(
           animation: _controller,
           builder: (context, child) {
             return GestureDetector(
-              onTap: handlePress,
+              onTap: () {
+                HapticFeedback.selectionClick();
+                handlePress();
+              },
               child: SizedBox(
                 width: _widhtAnimation.value + 15,
                 height: 70,
@@ -116,7 +124,7 @@ class _AnimatedSaveButtonState extends State<AnimatedSaveButton>
                                 opacity: animation,
                                 child: SlideTransition(
                                   position: Tween<Offset>(
-                                    begin: Offset(0, 0.2),
+                                    begin: Offset(0, 0.10),
                                     end: Offset.zero,
                                   ).animate(animation),
                                   child: child,
@@ -129,8 +137,10 @@ class _AnimatedSaveButtonState extends State<AnimatedSaveButton>
                                   : (_status == SaveStatus.loading
                                         ? "Saving"
                                         : "Saved"),
-                              style: TextStyle(
+                              key: ValueKey(_status),
+                              style: GoogleFonts.questrial(
                                 color: _textColorAnimation.value,
+                                fontSize: 20,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
