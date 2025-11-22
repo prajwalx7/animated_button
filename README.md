@@ -1,6 +1,6 @@
 ## 🎥 Animated Save Button Demo
 
-[<video src="assets/button_demo.mp4" width="350" autoplay loop muted />](https://github.com/user-attachments/assets/7174c1c3-a26b-437d-acb6-041a0fe2dc7f)
+[[<video src="assets/button_demo.mp4" width="350" autoplay loop muted />](https://github.com/user-attachments/assets/7174c1c3-a26b-437d-acb6-041a0fe2dc7f)](https://github.com/user-attachments/assets/b8b565d0-e704-4ada-ae13-ed90d4ac5fba)
 
 
 
